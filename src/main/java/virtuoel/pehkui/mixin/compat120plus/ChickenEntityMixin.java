@@ -11,7 +11,7 @@ import virtuoel.pehkui.util.ScaleUtils;
 @Mixin(ChickenEntity.class)
 public abstract class ChickenEntityMixin
 {
-	@ModifyConstant(method = "updatePassengerPosition", constant = @Constant(floatValue = 0.1F))
+	@ModifyConstant(method = "getPassengerAttachmentPos", constant = @Constant(floatValue = -0.1F))
 	private float pehkui$updatePassengerPosition$offset(float value, Entity passenger)
 	{
 		final float scale = ScaleUtils.getBoundingBoxWidthScale(passenger);

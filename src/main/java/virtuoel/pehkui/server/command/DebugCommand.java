@@ -25,7 +25,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.network.packet.s2c.common.CustomPayloadS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -93,12 +93,13 @@ public class DebugCommand
 					.then(CommandManager.literal("garbage_collect")
 						.executes(context ->
 						{
-							context.getSource().getPlayerOrThrow().networkHandler.sendPacket(
-								new CustomPayloadS2CPacket(Pehkui.DEBUG_PACKET,
-									new PacketByteBuf(Unpooled.buffer())
-									.writeEnumConstant(DebugPacketType.GARBAGE_COLLECT)
-								)
-							);
+							context.getSource().sendError(Text.of("NOT UPDATED!"));
+//							context.getSource().getPlayerOrThrow().networkHandler.sendPacket(
+//								new CustomPayloadS2CPacket(Pehkui.DEBUG_PACKET,
+//									new PacketByteBuf(Unpooled.buffer())
+//									.writeEnumConstant(DebugPacketType.GARBAGE_COLLECT)
+//								)
+//							);
 							
 							System.gc();
 							
@@ -220,12 +221,13 @@ public class DebugCommand
 		final Entity executor = context.getSource().getEntity();
 		if (executor instanceof ServerPlayerEntity)
 		{
-			((ServerPlayerEntity) executor).networkHandler.sendPacket(
-				new CustomPayloadS2CPacket(Pehkui.DEBUG_PACKET,
-					new PacketByteBuf(Unpooled.buffer())
-					.writeEnumConstant(DebugPacketType.MIXIN_AUDIT)
-				)
-			);
+			context.getSource().sendError(Text.of("NOT UPDATED!"));
+//			((ServerPlayerEntity) executor).networkHandler.sendPacket(
+//				new CustomPayloadS2CPacket(Pehkui.DEBUG_PACKET,
+//					new PacketByteBuf(Unpooled.buffer())
+//					.writeEnumConstant(DebugPacketType.MIXIN_AUDIT)
+//				)
+//			);
 		}
 		
 		CommandUtils.sendFeedback(context.getSource(), () -> I18nUtils.translate("commands.pehkui.debug.audit.start", "Starting Mixin environment audit..."), false);

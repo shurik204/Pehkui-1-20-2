@@ -11,8 +11,7 @@ import net.minecraft.util.math.Vec3d;
 import virtuoel.pehkui.util.ScaleUtils;
 
 @Mixin(Entity.class)
-public abstract class EntityMixin
-{
+public abstract class EntityMixin {
 	@Shadow(remap = false)
 	private double field_5987; // UNMAPPED_FIELD
 	@Shadow(remap = false)
@@ -25,14 +24,14 @@ public abstract class EntityMixin
 	@Unique
 	protected void setPosDirectly(final double x, final double y, final double z)
 	{
+
 		field_5987 = x;
 		field_6010 = y;
 		field_6035 = z;
 	}
 	
 	@ModifyConstant(method = "isInsideWall()Z", constant = @Constant(floatValue = 0.1F))
-	private float pehkui$isInsideWall$offset(float value)
-	{
+	private float pehkui$isInsideWall$offset(float value) {
 		final float scale = ScaleUtils.getEyeHeightScale((Entity) (Object) this);
 		
 		return scale != 1.0F ? value * scale : value;

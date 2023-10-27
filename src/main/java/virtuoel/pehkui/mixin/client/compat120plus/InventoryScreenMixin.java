@@ -28,8 +28,8 @@ public abstract class InventoryScreenMixin
 	@Unique private static final ScaleData pehkui$IDENTITY = ScaleData.Builder.create().build();
 	@Unique private static final ThreadLocal<Box> pehkui$BOX = new ThreadLocal<>();
 	
-	@Inject(method = "drawEntity(Lnet/minecraft/client/gui/DrawContext;IIILorg/joml/Quaternionf;Lorg/joml/Quaternionf;Lnet/minecraft/entity/LivingEntity;)V", at = @At(value = "HEAD"))
-	private static void pehkui$drawEntity$head(DrawContext drawContext, int x, int y, int k, Quaternionf quaternionf, @Nullable Quaternionf quaternionf2, LivingEntity entity, CallbackInfo info)
+	@Inject(method = "drawEntity(Lnet/minecraft/client/gui/DrawContext;IIIIIFFFLnet/minecraft/entity/LivingEntity;)V", at = @At(value = "HEAD"))
+	private static void pehkui$drawEntity$head(DrawContext context, int x1, int y1, int x2, int y2, int size, float f, float mouseX, float mouseY, LivingEntity entity, CallbackInfo ci)
 	{
 		final Map<ScaleType, ScaleData> scales = pehkui$SCALES.get();
 		
@@ -57,8 +57,8 @@ public abstract class InventoryScreenMixin
 		entity.setBoundingBox(box);
 	}
 	
-	@Inject(method = "drawEntity(Lnet/minecraft/client/gui/DrawContext;IIILorg/joml/Quaternionf;Lorg/joml/Quaternionf;Lnet/minecraft/entity/LivingEntity;)V", at = @At(value = "RETURN"))
-	private static void pehkui$drawEntity$return(DrawContext drawContext, int i, int j, int k, Quaternionf quaternionf, @Nullable Quaternionf quaternionf2, LivingEntity entity, CallbackInfo info)
+	@Inject(method = "drawEntity(Lnet/minecraft/client/gui/DrawContext;IIIIIFFFLnet/minecraft/entity/LivingEntity;)V", at = @At(value = "RETURN"))
+	private static void pehkui$drawEntity$return(DrawContext context, int x1, int y1, int x2, int y2, int size, float f, float mouseX, float mouseY, LivingEntity entity, CallbackInfo ci)
 	{
 		final Map<ScaleType, ScaleData> scales = pehkui$SCALES.get();
 		

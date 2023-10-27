@@ -12,14 +12,14 @@ import virtuoel.pehkui.util.ScaleUtils;
 @Mixin(SkeletonHorseEntity.class)
 public abstract class SkeletonHorseEntityMixin
 {
-	@Inject(at = @At("RETURN"), method = "getMountedHeightOffset", cancellable = true)
-	private void pehkui$getMountedHeightOffset(CallbackInfoReturnable<Double> info)
-	{
-		final float scale = ScaleUtils.getBoundingBoxHeightScale((Entity) (Object) this);
-		
-		if (scale != 1.0F)
-		{
-			info.setReturnValue(info.getReturnValue() + ((1.0F - scale) * 0.1875D));
-		}
-	}
+//	@Inject(at = @At("RETURN"), method = "getPassengerAttachmentPos", cancellable = true)
+//	private void pehkui$getMountedHeightOffset(CallbackInfoReturnable<Double> info)
+//	{
+//		final float scale = ScaleUtils.getBoundingBoxHeightScale((Entity) (Object) this);
+//
+//		if (scale != 1.0F)
+//		{
+//			info.setReturnValue(info.getReturnValue() + ((1.0F - scale) * 0.1875D));
+//		}
+//	}
 }

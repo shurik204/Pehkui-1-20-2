@@ -1,5 +1,6 @@
 package virtuoel.pehkui.mixin;
 
+import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,19 +18,19 @@ import net.minecraft.entity.player.PlayerEntity;
 import virtuoel.pehkui.util.ScaleUtils;
 
 @Mixin({
-	ArmorStandEntity.class,
+//	ArmorStandEntity.class,
 	AbstractSkeletonEntity.class,
-	EndermiteEntity.class,
-	PatrolEntity.class,
-	SilverfishEntity.class,
+//	EndermiteEntity.class,
+//	PatrolEntity.class,
+//	SilverfishEntity.class,
 	ZombieEntity.class,
-	AnimalEntity.class,
+//	AnimalEntity.class,
 	PlayerEntity.class
 })
 public abstract class EntityVehicleHeightOffsetMixin
 {
-	@Inject(at = @At("RETURN"), method = "getHeightOffset", cancellable = true)
-	private void pehkui$getHeightOffset(CallbackInfoReturnable<Double> info)
+	@Inject(at = @At("RETURN"), method = "getUnscaledRidingOffset", cancellable = true)
+	private void pehkui$getHeightOffset(CallbackInfoReturnable<Float> info)
 	{
 		final Entity self = (Entity) (Object) this;
 		final Entity vehicle = self.getVehicle();
@@ -39,19 +40,12 @@ public abstract class EntityVehicleHeightOffsetMixin
 			final float scale = ScaleUtils.getBoundingBoxHeightScale(self);
 			final float vehicleScale = ScaleUtils.getBoundingBoxHeightScale(vehicle);
 			
-			if (scale != 1.0F || vehicleScale != 1.0F)
-			{
-				final double vehicleScaledHeight = vehicle.getHeight();
-				final double vehicleHeight = vehicleScaledHeight / vehicleScale;
-				final double scaledMountedOffset = vehicle.getMountedHeightOffset();
-				final double mountedOffset = scaledMountedOffset / vehicleScale;
-				final double offset = info.getReturnValueD();
-				final double scaledOffset = offset * scale;
-				
-				final double bottom = vehicleHeight - mountedOffset - offset;
-				final double down = vehicleScaledHeight - scaledMountedOffset - (bottom * scale);
-				
-				info.setReturnValue(down < scaledOffset ? scaledOffset : down);
+			if (scale != 1.0F || vehicleScale != 1.0F) {
+				final float offset = info.getReturnValueF();
+				final float scaledOffset = offset * scale;
+
+
+				info.setReturnValue(scaledOffset);
 			}
 		}
 	}

@@ -24,9 +24,9 @@ public abstract class EntitySelectorReaderMixin implements PehkuiEntitySelectorR
 	abstract void setPredicate(Predicate<Entity> predicate);
 	
 	@Unique
-	NumberRange.FloatRange pehkui$scaleRange = NumberRange.FloatRange.ANY;
+	NumberRange.DoubleRange pehkui$scaleRange = NumberRange.DoubleRange.ANY;
 	@Unique
-	NumberRange.FloatRange pehkui$computedScaleRange = NumberRange.FloatRange.ANY;
+	NumberRange.DoubleRange pehkui$computedScaleRange = NumberRange.DoubleRange.ANY;
 	@Unique
 	ScaleType pehkui$scaleType = ScaleTypes.INVALID;
 	@Unique
@@ -38,13 +38,13 @@ public abstract class EntitySelectorReaderMixin implements PehkuiEntitySelectorR
 		if (!this.pehkui$scaleRange.isDummy())
 		{
 			final ScaleType scaleType = this.pehkui$scaleType == ScaleTypes.INVALID ? ScaleTypes.BASE : this.pehkui$scaleType;
-			setPredicate(e -> CommandUtils.testFloatRange(this.pehkui$scaleRange, scaleType.getScaleData(e).getBaseScale()));
+			setPredicate(e -> CommandUtils.testDoubleRange(this.pehkui$scaleRange, scaleType.getScaleData(e).getBaseScale()));
 		}
 		
 		if (!this.pehkui$computedScaleRange.isDummy())
 		{
 			final ScaleType scaleType = this.pehkui$computedScaleType == ScaleTypes.INVALID ? ScaleTypes.BASE : this.pehkui$computedScaleType;
-			setPredicate(e -> CommandUtils.testFloatRange(this.pehkui$computedScaleRange, scaleType.getScaleData(e).getScale()));
+			setPredicate(e -> CommandUtils.testDoubleRange(this.pehkui$computedScaleRange, scaleType.getScaleData(e).getScale()));
 		}
 	}
 	
@@ -61,13 +61,13 @@ public abstract class EntitySelectorReaderMixin implements PehkuiEntitySelectorR
 	}
 	
 	@Override
-	public NumberRange.FloatRange pehkui_getScaleRange()
+	public NumberRange.DoubleRange pehkui_getScaleRange()
 	{
 		return this.pehkui$scaleRange;
 	}
 	
 	@Override
-	public void pehkui_setScaleRange(final NumberRange.FloatRange baseScaleRange)
+	public void pehkui_setScaleRange(final NumberRange.DoubleRange baseScaleRange)
 	{
 		this.pehkui$scaleRange = baseScaleRange;
 	}
@@ -85,13 +85,13 @@ public abstract class EntitySelectorReaderMixin implements PehkuiEntitySelectorR
 	}
 	
 	@Override
-	public NumberRange.FloatRange pehkui_getComputedScaleRange()
+	public NumberRange.DoubleRange pehkui_getComputedScaleRange()
 	{
 		return this.pehkui$computedScaleRange;
 	}
 	
 	@Override
-	public void pehkui_setComputedScaleRange(final NumberRange.FloatRange computedScaleRange)
+	public void pehkui_setComputedScaleRange(final NumberRange.DoubleRange computedScaleRange)
 	{
 		this.pehkui$computedScaleRange = computedScaleRange;
 	}

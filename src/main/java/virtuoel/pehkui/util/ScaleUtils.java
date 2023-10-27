@@ -17,7 +17,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.network.packet.s2c.common.CustomPayloadS2CPacket;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -249,6 +249,7 @@ public class ScaleUtils
 		if (!syncedScales.isEmpty())
 		{
 			final PacketByteBuf buffer = new PacketByteBuf(Unpooled.buffer());
+			buffer.writeIdentifier(Pehkui.SCALE_PACKET);
 			
 			buffer.writeVarInt(entity.getId());
 			buffer.writeInt(syncedScales.size());
@@ -259,7 +260,7 @@ public class ScaleUtils
 				s.toPacket(buffer);
 			}
 			
-			packetSender.accept(new CustomPayloadS2CPacket(Pehkui.SCALE_PACKET, buffer));
+			packetSender.accept(new CustomPayloadS2CPacket(buffer));
 			syncedScales.clear();
 		}
 	}

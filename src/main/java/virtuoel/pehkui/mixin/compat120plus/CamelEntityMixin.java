@@ -11,27 +11,27 @@ import virtuoel.pehkui.util.ScaleUtils;
 @Mixin(CamelEntity.class)
 public abstract class CamelEntityMixin
 {
-	@ModifyConstant(method = "updatePassengerPosition", constant = @Constant(floatValue = 0.5F))
-	private float pehkui$updatePassengerPosition$frontOffset(float value, Entity passenger)
-	{
-		final float scale = ScaleUtils.getBoundingBoxWidthScale(passenger);
-		
-		return scale != 1.0F ? scale * value : value;
-	}
-	
-	@ModifyConstant(method = "updatePassengerPosition", constant = @Constant(floatValue = -0.7F))
-	private float pehkui$updatePassengerPosition$backOffset(float value, Entity passenger)
-	{
-		final float scale = ScaleUtils.getBoundingBoxWidthScale(passenger);
-		
-		return scale != 1.0F ? scale * value : value;
-	}
-	
-	@ModifyConstant(method = "updatePassengerPosition", constant = @Constant(floatValue = 0.2F))
-	private float pehkui$updatePassengerPosition$animalOffset(float value, Entity passenger)
-	{
-		final float scale = ScaleUtils.getBoundingBoxWidthScale(passenger);
-		
-		return scale != 1.0F ? scale * value : value;
-	}
+//	@ModifyConstant(method = "getPassengerAttachmentPos", constant = @Constant(floatValue = 0.5F))
+//	private float pehkui$updatePassengerPosition$frontOffset(float value, Entity passenger)
+//	{
+//		final float scale = ScaleUtils.getBoundingBoxWidthScale(passenger);
+//
+//		return scale != 1.0F ? scale * value : value;
+//	}
+//
+//	@ModifyConstant(method = "getPassengerAttachmentPos", constant = @Constant(floatValue = -0.7F))
+//	private float pehkui$updatePassengerPosition$backOffset(float value, Entity passenger)
+//	{
+//		final float scale = ScaleUtils.getBoundingBoxWidthScale(passenger);
+//
+//		return scale != 1.0F ? scale * value : value;
+//	}
+//
+//	@ModifyConstant(method = "getPassengerAttachmentPos", constant = @Constant(floatValue = 0.2F))
+//	private float pehkui$updatePassengerPosition$animalOffset(float value, Entity passenger)
+//	{
+//		final float scale = ScaleUtils.getBoundingBoxWidthScale(passenger);
+//
+//		return scale != 1.0F ? scale * value : value;
+//	}
 }

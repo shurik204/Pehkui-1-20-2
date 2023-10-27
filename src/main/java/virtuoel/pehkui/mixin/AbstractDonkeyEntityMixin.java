@@ -12,14 +12,14 @@ import virtuoel.pehkui.util.ScaleUtils;
 @Mixin(AbstractDonkeyEntity.class)
 public abstract class AbstractDonkeyEntityMixin
 {
-	@Inject(at = @At("RETURN"), method = "getMountedHeightOffset", cancellable = true)
-	private void pehkui$getMountedHeightOffset(CallbackInfoReturnable<Double> info)
+	@Inject(at = @At("RETURN"), method = "getPassengerAttachmentY", cancellable = true)
+	private void pehkui$getMountedHeightOffset(CallbackInfoReturnable<Float> info)
 	{
 		final float scale = ScaleUtils.getBoundingBoxHeightScale((Entity) (Object) this);
 		
 		if (scale != 1.0F)
 		{
-			info.setReturnValue(info.getReturnValue() + ((1.0F - scale) * 0.25D));
+			info.setReturnValue((float) (info.getReturnValue() + ((1.0F - scale) * 0.25D)));
 		}
 	}
 }

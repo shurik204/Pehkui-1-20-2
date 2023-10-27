@@ -11,16 +11,16 @@ import virtuoel.pehkui.util.ScaleUtils;
 @Mixin(AxolotlEntity.class)
 public class AxolotlEntityMixin
 {
-	@ModifyConstant(method = "squaredAttackRange", constant = @Constant(doubleValue = 1.5D))
-	private double pehkui$squaredAttackRange$range(double value)
-	{
-		final float scale = ScaleUtils.getBoundingBoxWidthScale((Entity) (Object) this);
-		
-		if (scale != 1.0F)
-		{
-			return scale * scale * value;
-		}
-		
-		return value;
-	}
+//	@ModifyConstant(method = "squaredAttackRange", constant = @Constant(doubleValue = 1.5D))
+//	private double pehkui$squaredAttackRange$range(double value)
+//	{
+//		final float scale = ScaleUtils.getBoundingBoxWidthScale((Entity) (Object) this);
+//
+//		if (scale != 1.0F)
+//		{
+//			return scale * scale * value;
+//		}
+//
+//		return value;
+//	}
 }

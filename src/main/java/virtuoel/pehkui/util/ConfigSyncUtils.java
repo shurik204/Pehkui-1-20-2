@@ -27,7 +27,7 @@ import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.network.packet.s2c.common.CustomPayloadS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -148,6 +148,7 @@ public class ConfigSyncUtils
 	public static CustomPayloadS2CPacket createConfigSyncPacket(final Collection<SyncableConfigEntry<?>> configEntries)
 	{
 		final PacketByteBuf buffer = new PacketByteBuf(Unpooled.buffer());
+		buffer.writeIdentifier(Pehkui.CONFIG_SYNC_PACKET);
 		
 		buffer.writeVarInt(configEntries.size());
 		for (SyncableConfigEntry<?> entry : configEntries)
@@ -156,7 +157,7 @@ public class ConfigSyncUtils
 			((ConfigEntryCodec) SYNCED_CONFIG_CODECS.get(entry.getName())).write(buffer, entry);
 		}
 		
-		return new CustomPayloadS2CPacket(Pehkui.CONFIG_SYNC_PACKET, buffer);
+		return new CustomPayloadS2CPacket(buffer);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
